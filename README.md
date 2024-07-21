@@ -22,3 +22,4 @@ The commands in the below list of steps are meant to be executed in the Azure CL
    ```bash
    az deployment group create -n LabDeployment -g '<resource group name>' -f ./main.bicep -p ./main.bicepparam -c -r ResourceIdOnly -o table
    ```
+   

@@ -14,4 +14,6 @@ param vmConfigList = [
     vmSize: 'Standard_D2_v5'
   }
 ]
-param timeZoneId = 'Europe/Amsterdam'
+param timeZoneId = 'W. Europe Standard Time'
+param enableVmBackup = true
+param rsVaultName = 'DemoVault'

@@ -9,7 +9,14 @@ param adminUsername string
 @secure()
 param adminPassword string
 
+@description('The ID of the time zone. For a list of all available time zone IDs, use the following PowerShell command: Get-TimeZone -ListAvailabe | Sort-Object DisplayName | Format-Table Id, DisplayName')
 param timeZoneId string
+
+@description('Specifies whether to include the VM(s) in backup or not.')
+param enableVmBackup bool
+
+@description('Name for the recovery service vault. Can be left empty or left out if backup will not be enabled.')
+param rsVaultName string = ''
 
 
 resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' existing = {
@@ -115,5 +122,26 @@ resource autoShutdownSchedule 'microsoft.devtestlab/schedules@2018-09-15' = {
       status: 'Disabled'
     }
     targetResourceId: VM.id
+  }
+}
+
+resource rsVault 'Microsoft.RecoveryServices/vaults@2024-04-01' existing = if (enableVmBackup) {
+  name: rsVaultName
+
+  resource enhancedVMPolicy 'backupPolicies' existing = {
+    name: 'EnhancedVMPolicy'
+  }
+}
+
+var resourceGroupResourceName = '${resourceGroup().name};${VM.name}'
+var protectionContainer = 'iaasvmcontainer;iaasvmcontainerv2;${resourceGroupResourceName}'
+var protectedItem = 'vm;iaasvmcontainerv2;${resourceGroupResourceName}'
+
+resource virtualMachineBackup 'Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems@2021-08-01' = if (enableVmBackup) {
+  name: '${rsVaultName}/Azure/${protectionContainer}/${protectedItem}'
+  properties: {
+    protectedItemType: 'Microsoft.Compute/virtualMachines'
+    policyId: rsVault::enhancedVMPolicy.id
+    sourceResourceId: VM.id
   }
 }
