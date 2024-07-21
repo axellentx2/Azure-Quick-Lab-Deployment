@@ -2,7 +2,15 @@ targetScope = 'resourceGroup'
 
 param vNetName string
 param bastionName string
+param adminUsername string
+
+@secure()
+param adminPassword string
+
 param vmConfigList array
+
+@description('The ID of the time zone. For a list of all the available time zones, use the following PowerShell command: Get-TimeZone -ListAvailabe')
+param timeZoneId string
 
 
 module vNet 'modules/deployvNet.bicep' = {
@@ -29,8 +37,9 @@ module VM 'modules/deployVM.bicep' = [for vmConfig in vmConfigList: {
     vNetName: vNetName
     vmName: vmConfig.vmName
     vmSize: vmConfig.vmSize
-    adminUsername: vmConfig.adminUsername
-    adminPassword: vmConfig.adminPassword
+    adminUsername: adminUsername
+    adminPassword: adminPassword
+    timeZoneId: timeZoneId
   }
   dependsOn: [
     vNet

@@ -9,7 +9,7 @@ param adminUsername string
 @secure()
 param adminPassword string
 
-var timeZoneId = 'W. Europe Standard Time'
+param timeZoneId string
 
 
 resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' existing = {
