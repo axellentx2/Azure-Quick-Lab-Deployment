@@ -2,8 +2,9 @@ using 'main.bicep'
 
 param vNetName = 'DemovNet'
 param bastionName = 'DemoBastion'
-param adminUsername = 'DemoAdmin'
-param adminPassword = ''
+param enableVmBackup = true
+param rsVaultName = 'DemoVault'
+param timeZoneId = 'W. Europe Standard Time'
 param vmConfigList = [
   {
     vmName: 'DemoVM'
@@ -14,6 +15,5 @@ param vmConfigList = [
     vmSize: 'Standard_D2_v5'
   }
 ]
-param timeZoneId = 'W. Europe Standard Time'
-param enableVmBackup = true
-param rsVaultName = 'DemoVault'
+param adminUsername = 'DemoAdmin'
+param adminPassword = ''

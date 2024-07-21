@@ -2,22 +2,23 @@ targetScope = 'resourceGroup'
 
 param vNetName string
 param bastionName string
-param adminUsername string
-
-@secure()
-param adminPassword string
-
-@description('Array of objects that each specify the name and size of the VM.')
-param vmConfigList array
-
-@description('The ID of the time zone. For a list of all available time zone IDs, use the following PowerShell command: Get-TimeZone -ListAvailabe | Sort-Object DisplayName | Format-Table Id, DisplayName')
-param timeZoneId string
 
 @description('Specifies whether to include the VM(s) in backup or not.')
 param enableVmBackup bool
 
 @description('Name for the recovery service vault. Can be left empty or left out if backup will not be enabled.')
 param rsVaultName string = ''
+
+@description('The ID of the time zone. For a list of all available time zone IDs, use the following PowerShell command: Get-TimeZone -ListAvailabe | Sort-Object DisplayName | Format-Table Id, DisplayName')
+param timeZoneId string
+
+@description('Array of objects that each specify the name and size of the VM.')
+param vmConfigList array
+
+param adminUsername string
+
+@secure()
+param adminPassword string
 
 
 module vNet 'modules/deployvNet.bicep' = {
