@@ -128,8 +128,8 @@ resource autoShutdownSchedule 'microsoft.devtestlab/schedules@2018-09-15' = {
 resource rsVault 'Microsoft.RecoveryServices/vaults@2024-04-01' existing = if (enableVmBackup) {
   name: rsVaultName
 
-  resource enhancedVMPolicy 'backupPolicies' existing = {
-    name: 'EnhancedVMPolicy'
+  resource trustedLaunchVMPolicy 'backupPolicies' existing = {
+    name: 'TrustedLaunchVMPolicy'
   }
 }
 
@@ -141,7 +141,7 @@ resource virtualMachineBackup 'Microsoft.RecoveryServices/vaults/backupFabrics/p
   name: '${rsVaultName}/Azure/${protectionContainer}/${protectedItem}'
   properties: {
     protectedItemType: 'Microsoft.Compute/virtualMachines'
-    policyId: rsVault::enhancedVMPolicy.id
+    policyId: rsVault::trustedLaunchVMPolicy.id
     sourceResourceId: VM.id
   }
 }

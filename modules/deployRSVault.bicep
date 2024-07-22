@@ -17,25 +17,25 @@ resource recoveryServicesVault 'Microsoft.RecoveryServices/vaults@2024-04-01' = 
     publicNetworkAccess: 'Disabled'
   }
 
-  resource enhancedVMPolicy 'backupPolicies' = {
-    name: 'EnhancedVMPolicy'
+  resource trustedLaunchVMPolicy 'backupPolicies' = {
+    name: 'TrustedLaunchVMPolicy'
     properties: {
       backupManagementType: 'AzureIaasVM'
       policyType: 'V2'
       schedulePolicy: {
         schedulePolicyType: 'SimpleSchedulePolicyV2'
-        scheduleRunFrequency: 'Hourly'
-        hourlySchedule: {
-          interval: 12
-          scheduleWindowDuration: 24
-          scheduleWindowStartTime: '2024-07-01T06:00:00Z'
+        scheduleRunFrequency: 'Daily'
+        dailySchedule: {
+          scheduleRunTimes: [
+            '2024-07-01T03:00:00Z'
+          ]
         }
       }
       retentionPolicy: {
         retentionPolicyType: 'LongTermRetentionPolicy'
         dailySchedule: {
           retentionTimes: [
-            '2024-07-01T06:00:00Z'
+            '2024-07-01T03:00:00Z'
           ]
           retentionDuration: {
           count: 7
