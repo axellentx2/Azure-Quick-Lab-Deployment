@@ -12,8 +12,8 @@ param vmConfigList = [
   }
   {
     vmName: 'DemoVM2'
-    vmSize: 'Standard_D2_v5'
+    vmSize: 'Standard_B2ms'
   }
 ]
 param adminUsername = 'DemoAdmin'
-param adminPassword = ''
+param adminPassword = '<Your admin password here>'
