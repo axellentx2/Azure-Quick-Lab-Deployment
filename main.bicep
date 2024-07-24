@@ -62,7 +62,7 @@ module bastion 'modules/deployBastion.bicep' = {
 }
 
 module rsVault 'modules/deployRSVault.bicep' = if (enableVmBackup) {
-  name: rsVaultName
+  name: 'deployRSVault'
   params: {
     rsVaultName: rsVaultName
     timeZoneId: timeZoneId
