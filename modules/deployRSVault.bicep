@@ -1,9 +1,14 @@
 targetScope = 'resourceGroup'
 
 param location string = resourceGroup().location
+
+@description('Name of the recovery services vault.')
 param rsVaultName string
 
-@description('The ID of the time zone. For a list of all available time zone IDs, use the following PowerShell command: Get-TimeZone -ListAvailabe | Sort-Object DisplayName | Format-Table Id, DisplayName')
+@description('''
+The ID of the time zone. For a list of all available time zone IDs, use the following PowerShell command:  
+`Get-TimeZone -ListAvailabe | Sort-Object DisplayName | Format-Table Id, DisplayName`
+''')
 param timeZoneId string
 
 

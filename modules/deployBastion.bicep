@@ -1,7 +1,11 @@
 targetScope = 'resourceGroup'
 
 param location string = resourceGroup().location
+
+@description('Name of the vNet.')
 param vNetName string
+
+@description('Name of the Bastion Host resource.')
 param bastionName string
 
 
