@@ -1,7 +1,7 @@
 ## Bicp template for deploying a VM lab environment with a Bastion Host
 
 ### Introduction
-This template will create a lab environment with a vNet (including NSG with only default rules), Bastion (Developer SKU) and one or several VMs. The VM(s) - with a secure profile - will be configured with an auto shutdown schedule at 7 PM in the time zone that's specified in the parameter file. Optionally, the VM(s) will be included in a daily backup in a recovery services vault.
+This template will create a lab environment with a vNet (including NSG with only default rules), Bastion (Developer SKU) and one or several Windows Server 2022 VMs. The VM(s) - with a secure profile - will be configured with an auto shutdown schedule at 7 PM in the time zone that's specified in the parameter file. Optionally, the VM(s) will be included in a daily backup in a recovery services vault.
 
 Please note that the Developer SKU for Bastion is currently only available in the following regions: Central US EUAP, East US 2 EUAP, West Central US, North Central US, West US and North Europe. Since all resources that are deployed using this template derive their location from the parent resource group, you should create a resource group for this template deployment in one of the aforementioned regions. The template will actually successfully deploy to a resource group in another region, but subsequently connecting to a VM through Bastion will fail.  
 See for the latest info on availability of this SKU: https://learn.microsoft.com/en-us/azure/bastion/quickstart-developer-sku.
