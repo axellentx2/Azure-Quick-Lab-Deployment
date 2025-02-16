@@ -1,4 +1,4 @@
-## Bicp template for deploying a VM lab environment with a Bastion Host
+## Bicep template for deploying a VM lab environment with a Bastion Host
 
 ### Introduction
 This template will create a lab environment with a vNet (including NSG with only default rules), Bastion (Developer SKU) and one or several Windows Server 2022 VMs. The VM(s) - with a secure profile - will be configured with an auto shutdown schedule at 7 PM in the time zone that's specified in the parameter file. Optionally, the VM(s) will be included in a daily backup in a recovery services vault.
