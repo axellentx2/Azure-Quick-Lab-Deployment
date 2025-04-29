@@ -86,7 +86,7 @@ resource VM 'Microsoft.Compute/virtualMachines@2024-03-01' = {
         enableAutomaticUpdates: true
         patchSettings: {
           assessmentMode: 'ImageDefault'
-          patchMode: 'AutomaticByOS'
+          patchMode: 'AutomaticByPlatform'
         }
         provisionVMAgent: true
         timeZone: timeZoneId
@@ -113,7 +113,7 @@ resource VM 'Microsoft.Compute/virtualMachines@2024-03-01' = {
       imageReference: {
         offer: 'WindowsServer'
         publisher: 'MicrosoftWindowsServer'
-        sku: '2022-datacenter-azure-edition'
+        sku: '2025-datacenter-azure-edition'
         version: 'latest'
       }
     }
