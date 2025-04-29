@@ -12,7 +12,7 @@ param vmConfigList = [
   }
   {
     vmName: 'DemoVM2'
-    vmSize: 'Standard_B2ms'
+    vmSize: 'Standard_D2ds_v6'
   }
 ]
 param adminUsername = 'DemoAdmin'
